@@ -2,7 +2,8 @@ import math
 
 import torch
 import pytest
-
+import sys
+sys.path.append("/fly") # docker working dir
 from src.models.layers.block_butterfly_multiply import block_butterfly_multiply
 from src.models.layers.block_butterfly_multiply import block_butterfly_factor_multiply
 

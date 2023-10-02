@@ -120,7 +120,7 @@ RUN pip install pytest matplotlib jupyter ipython ipdb gpustat scikit-learn spac
 # hydra
 RUN pip install hydra-core==1.2.0 hydra-colorlog==1.2.0 hydra-optuna-sweeper==1.2.0 python-dotenv rich
 # Core packages
-RUN pip install transformers==4.20.1 datasets==2.3.2 pytorch-lightning==1.6.5 triton==2.0.0.dev20220711 wandb==0.12.21 timm==0.6.5 torchmetrics==0.9.2
+RUN pip install transformers==4.20.1 datasets==2.3.2 pytorch-lightning==1.6.5 triton==2.0.0.dev20221030 wandb==0.12.21 timm==0.6.5 torchmetrics==0.9.2
 
 # For MLPerf
 RUN pip install git+https://github.com/mlcommons/logging.git@2.0.0-rc4
@@ -133,3 +133,6 @@ RUN pip install tensorboard seqeval psutil sacrebleu rouge-score tensorflow_data
 #     && rm -rf applications/
 
 # ENV NVIDIA_REQUIRE_CUDA=cuda>=10.1
+
+# added libs for PEFT
+RUN pip install loralib scikit-learn tqdm

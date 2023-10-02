@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  fly-service:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: fly:latest
+    
+    volumes:
+      - .:/fly
+    working_dir: /fly
+    command: bash
+    stdin_open: true
+    tty: true

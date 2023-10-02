@@ -1,8 +1,8 @@
 import math
-
 import torch
 import pytest
-
+import sys
+sys.path.insert(0, '/fly') # docker working dir 
 from src.models.layers.blockdiag_butterfly_multiply import blockdiag_butterfly_multiply
 from src.models.layers.blockdiag_butterfly_multiply import blockdiag_butterfly_multiply_reference
 
@@ -53,11 +53,13 @@ def test_block_diag_butterfly_multiply(log_n, device, dtype):
     x = torch.randn(batch_size, n, device=device, dtype=dtype, requires_grad=True)
     w1_bfly = torch.randn(sqrtn, sqrtn, sqrtn, device=x.device, dtype=x.dtype, requires_grad=True)
     w2_bfly = torch.randn(sqrtn, sqrtn, sqrtn, device=x.device, dtype=x.dtype, requires_grad=True)
+    pytest.set_trace()
     out = blockdiag_butterfly_multiply(x, w1_bfly, w2_bfly)
     grad = torch.randn_like(out)
     dx, dw1_bfly, dw2_bfly = torch.autograd.grad(out, (x, w1_bfly, w2_bfly), grad,
                                                  retain_graph=True)
     assert out.shape == (batch_size, n)
+    pytest.set_trace()
     out_ref = blockdiag_butterfly_multiply_reference(x, w1_bfly, w2_bfly)
     dx_ref, dw1_bfly_ref, dw2_bfly_ref = torch.autograd.grad(out_ref, (x, w1_bfly, w2_bfly), grad,
                                                              retain_graph=True)
